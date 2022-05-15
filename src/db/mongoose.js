@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
 
-mongoose.connect(process.env.MONGOOSE_URL, { useNewUrlParser: true }, () => {
-    console.log("MongoDB connected: 27017")
-});
+mongoose.connect(process.env.MONGOOSE_URL, { useNewUrlParser: true })
+    .then(() => console.log('connected'))
+    .catch(e => console.log(e));;
