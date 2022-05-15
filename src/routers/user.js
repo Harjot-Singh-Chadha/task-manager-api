@@ -11,6 +11,21 @@ router.get("/users/me", auth, async (req, res) => {
     res.send(req.user)
 });
 
+router.get("/users/:id", auth, async (req, res) => {
+
+    try {
+        const user = await User.findById(req.params.id)
+
+        if (!user) {
+            throw new Error()
+        }
+        res.send(req.user)
+    } catch (error) {
+        res.status(404).send()
+    }
+
+});
+
 router.get("/users/:id/avatar", async (req, res) => {
     try {
         const user = await User.findById(req.params.id)
